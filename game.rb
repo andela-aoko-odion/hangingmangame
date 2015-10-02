@@ -25,7 +25,7 @@ class GameEngine                                    # game class  start here
 
 
   def write_file(file_name)                          # 
-    
+    # Todo: writting to file 
   end
 
   def file_error(file_discriptor)                    # Checks if a file exist for Reading or writting 
@@ -33,12 +33,12 @@ class GameEngine                                    # game class  start here
       # Todo: 
   end
 
-  def generate_word(difficult)
+  def generate_word(difficult)                       # returns a random word for every call, difficulty determine the level
     dictionary = file_read("5desk.txt")              # dictionary contains an array of words
     
     invalid = true
     while invalid
-      secret = dictionary.sample.chomp.downcase
+      secret = dictionary.sample.chomp.downcase.strip
      
       if difficulty == 1 && secret.length > 2 && secret.length <= 4        # Beginner                                           
         invalid = false
@@ -49,7 +49,27 @@ class GameEngine                                    # game class  start here
       end
     end
     return secret
+  end
+
+  def dialog?(answer)                                           # it asks the player simple YES or NO question
+    if answer == 1
+      return true
+    elsif answer == 0
+      return false
+    end
 
   end
+       
+  def set_lifline(difficulty)
+    if difficulty == 1                              #  returns 6 tries || lifeline for beginner
+      return 6                                      
+    elsif difficulty === 2                          #  returns 10 tries || lifeline for beginner
+      return 10
+    elsif difficulty == 3                           #  returns 14 tries || lifeline for beginner 
+      return 14
+    end
+  end
+
+
 
 end                                                  # Closes the Game class 

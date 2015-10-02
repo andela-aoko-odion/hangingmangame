@@ -1,8 +1,9 @@
 
-require "colorize"
+# require "colorize"
 
-class view
+class View
 
+  
   def menu_game
     
   end
@@ -11,8 +12,8 @@ class view
     
   end
 
-  def quit_game 
-
+  def quit_game
+    
   end
   
   def save_game(player_name)
@@ -24,7 +25,8 @@ class view
   end
 
   def load_saved_game(index_no)
-
+    
+   
   end
   
   def banner_game 
@@ -33,7 +35,7 @@ class view
          "\t\t#         Welcome to Hangman Game (version 0.01)      #\n" \
          "\t\t#         The Interesting Version                     #\n" \
          "\t\t#                                                     #\n" \
-         "\t\t#######################################################\n"\
+         "\t\t#######################################################\n" \
     .green
   end
   
