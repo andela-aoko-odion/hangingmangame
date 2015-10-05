@@ -2,9 +2,8 @@ require "pry"
 
 #binding.pry
 
-
 def get_word
-  arr = ["hello", "world", "this", "carrot", "smith", "welcome"]
+  arr = ["cat", "leg", "pig", "cup", "bell", "come"]
   word = arr.sample.downcase.strip 
   return word
 end
@@ -16,13 +15,10 @@ def getchar                                       # Takes input from the player 
 end
 
 
-
 def valid?(getchar, word) 
-  #word.uniq!
-#  binding.pry
-
-  if ( word.include?(getchar) == true && word != "" )
-    word.delete(getchar)
+ 
+  if ( word.include?(getchar) && word != "" )
+    word.delete!(getchar)
     return true
 
   elsif ( word.include?(getchar) == false && word != "" )
@@ -35,24 +31,49 @@ def valid?(getchar, word)
 end
 
 
+#puts word = get_word
+#while true do 
+# binding.pry
+#c = getchar
+ #valid?(c)
+#end
+
 puts word = get_word
-#valid?(getchar,word) 
-count = 6
-val = true 
+val = true
+while ((c = getchar) != 'z' && val) do
+ # binding.pry 
+   if c == 'z'
+     val = false
+ 
+  elsif valid?(c, word) == true
+    val = true 
 
-while (val && count > 0) do 
-
-  if valid?(getchar, word)
-    puts "\tMissed: #{getchar}"
-    
-  else
-    puts "You Win"
+  elsif valid?(c, word) == false
+    puts "you won"
     val = false
-
   end
-
-  count -= 1
+ 
 end
+
+
+#valid?(getchar,word) 
+#count = 4
+#val = true 
+
+#while (count > 0 && val) do 
+#binding.pry
+#  c = getchar 
+
+#  if valid?(c, word)
+#    puts "Wrong Input: #{c}"
+    
+#  else  valid?(c, word)
+#    puts "You Win"
+#    val = false
+
+#  end
+#  count -= 1
+#end
 
 #count = 4
 #val = true
