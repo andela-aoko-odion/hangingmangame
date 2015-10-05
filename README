@@ -1,12 +1,8 @@
 
+Hangingman Game 
 
-Todo: 
 
+This is slight varriation for the regular hangman Game 
 
-use this: source http://stackoverflow.com/questions/1489183/colorized-ruby-output 
+it generates some words and ask you to guess the rest
 
-require 'colorize'
-
-puts "I am now red.".red
-puts "I am now blue.".green
-puts "I am a super coder".yellow 
