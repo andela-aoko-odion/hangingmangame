@@ -1,8 +1,8 @@
 
-Hangingman Game 
 
+Hangman
+================
 
-This is slight varriation for the regular hangman Game 
+Hangman game utilizing imported files for word selection and saving/loading of gameplay and stats.
 
-it generates some words and ask you to guess the rest
 
