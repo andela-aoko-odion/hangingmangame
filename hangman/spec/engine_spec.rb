@@ -1,8 +1,6 @@
-#require "./spec_helper"
+require_relative "spec_helper"
 require "rspec"
 require "./engine"
-
-
 
 RSpec.describe GameEngine do
 
