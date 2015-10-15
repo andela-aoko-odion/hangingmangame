@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Andrew Oko-odion"]
   spec.email         = ["mrniceguy4net@yahoo.com"]
 
-  spec.summary       = %q{ Hangman Game is a console program that.}
+  spec.summary       = %q{ Hangman Game is a console program in ruby}
   spec.description   = %q{ simulate the hangman game.}
   spec.homepage      = "http://github.com/andela-aoko-odion"
   spec.license       = "MIT"
@@ -30,4 +30,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler"#, "~> 1.10"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_runtime_dependency "colorize"
+  spec.add_runtime_dependency "json"
 end
