@@ -11,22 +11,22 @@ Background
 When a player initiates the game
 
 The player is asked if he wants to start
-a new game or he wants to play from a 
+a new game or he wants to play from a
 previously saved game.
 
 
-example: 
+example:
 =======
-	 How would you like to start? 
-	 (n) or new for new game, 
+	 How would you like to start?
+	 (n) or new for new game,
 	 (l) or load for load game
 
 
 If new game is selected, the computer selects a word
-and scrammbles the word by replace the hidden selected word with ______.
+and scrambles the word by replace the hidden selected word with ______.
 
 
-example: 
+example:
 =======
 	 How would you like to start?
          (n) or new for new game,
@@ -34,23 +34,23 @@ example:
 
 	 Have fun guessing what I have in mind: _____.
 	 After 5 wrong guesses you have lost the game.
- 	 Guess_word : _____ 
+ 	 Guess_word : _____
 
-For every turn the player is expected to guess a letter 
+For every turn the player is expected to guess a letter
 from the computer guessed word.
 
      	 Incorrect! guessed  4 guesses left
-	  Guess_word : _____ 
+	  Guess_word : _____
 	  e
 	  Incorrect! guessed  3 guesses left
- 	  Guess_word : _____ 
+ 	  Guess_word : _____
 	  i
 	  Correct! keep guessing
- 	  Guess_word : __i__ 
+ 	  Guess_word : __i__
 
 Each Incorrect guess will reduce the players entitled chance by 1
 
-when the player finally guess the scrambbled word he is 
+when the player finally guess the scrambled word he is
 greeted with the message
 
 	Correct! keep guessing
@@ -64,12 +64,3 @@ Already started game can also be saved and loaded again later
 
 
 #end
-
-
-
-
-
-
-
-
-
