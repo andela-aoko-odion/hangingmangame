@@ -7,10 +7,10 @@ Gem::Specification.new do |spec|
   spec.name          = "hangman"
   spec.version       = Hangman::VERSION
   spec.authors       = ["Andrew Oko-odion"]
-  spec.email         = ["mrniceguy4net@yahoo.com"]
+  spec.email         = ["andrew.oko-odion@andela.com"]
 
   spec.summary       = %q{ Hangman Game is a console program in ruby}
-  spec.description   = %q{ simulate the hangman game.}
+  spec.description   = %q{ Its a simulatation of the classic hangman Game using Ruby.}
   spec.homepage      = "http://github.com/andela-aoko-odion"
   spec.license       = "MIT"
 
