@@ -1,21 +1,16 @@
 # Hangman
 
-
-
-This is a simulation of the classic Hangman Game in ruby.
+This is a simulation of the classic Hangman Game in Ruby.
 
 ## Background
-## ==========
 
 When a player initiates the game
-
 The player is asked if he wants to start
 a new game or he wants to play from a
 previously saved game.
 
 
 ## example:
-## =======
 	 How would you like to start?
 	 (n) or new for new game,
 	 (l) or load for load game
@@ -24,9 +19,7 @@ previously saved game.
 If new game is selected, the computer selects a word
 and scrambles the word by replace the hidden selected word with ______.
 
-
 ## example:
-## =======
 	 How would you like to start?
          (n) or new for new game,
          (l) or load for load game
@@ -58,10 +51,6 @@ greeted with the message
 	Congratulations. You have won
 
 Already started game can also be saved and loaded again later
-
-
-#end
-
 
 ## Installation
 
