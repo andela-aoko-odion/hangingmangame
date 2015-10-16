@@ -1,10 +1,10 @@
 require_relative "hangman/version"
-require_relative "./view"
+require_relative "./game"
 module Hangman
 extend self
 def play
-    game = View.new
-    game.play_game
+    game = Game.new
+    game.play
   end
 
 end

@@ -1,12 +1,12 @@
 
 module Hangman
 
-  class GameEngine
+  class Engine
 
     attr_accessor :game_word, :basic_array
 
-    def initialize(view)
-      @view = view
+    def initialize(game)
+      @game = game
     end
 
     def index_of(char)
@@ -32,42 +32,42 @@ module Hangman
 
 
   def invalid_input
-  @view.decrement_count
-    puts "Incorrect!".green + " guessed " + " #{@view.lives} guesses left".green
-    puts "You lost, WORD was #{@game_word} " if @view.lives <= 0
+  @game.decrement_life
+    puts "Incorrect!".green + " guessed " + " #{@game.lives} guesses left".green
+    puts "You lost, WORD was #{@game_word} " if @game.lives <= 0
     @status= :wrong
   end
 
   def correct_input(char)
     @words_to_guess.delete(char)
 
-    puts "Correct! keep guessing".green unless @view.game_won
-    puts "Congratulations. You have won" if @view.game_won
+    puts "Correct! keep guessing".green unless @game.won
+    puts "Congratulations. You have won" if @game.won
 
     index_of(char).each{ |i|
-      @view.scrambled[i] = char
+      @game.scrambled[i] = char
     }
   @status= :correct
   end
 
-    def pick_random_word_from_dictionary
+    def pick_random_word
       upper_limit = File.readlines('5desk.txt').size
       @game_word = File.readlines('5desk.txt')[rand(upper_limit)].chomp.downcase
     end
 
     def generate_random_word
       begin
-        pick_random_word_from_dictionary
-      end until(word_is_valid?)
+        pick_random_word
+      end until(is_word_valid?)
       game_word
     end
 
-    def length_of_word
+    def word_length
       @game_word.length
     end
 
-    def word_is_valid?
-      true if length_of_word >= 5 && length_of_word < 12
+    def is_word_valid?
+      true if word_length >= 5 && word_length < 12
     end
 
   end
