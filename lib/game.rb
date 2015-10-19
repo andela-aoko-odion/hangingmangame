@@ -1,6 +1,6 @@
 require "colorize"
-require_relative "./engine"
-require_relative "./fileop"
+require_relative "engine"
+require_relative "fileop"
 
 
 module Hangman
@@ -22,7 +22,7 @@ module Hangman
     end
 
     def banner
-      puts  "\t\t#######################################################\n" \
+            "\t\t#######################################################\n" \
             "\t\t#                                                     #\n" \
             "\t\t#         Welcome to Hangman Game (version 0.01)      #\n" \
             "\t\t#         The Interesting Version                     #\n" \
@@ -36,7 +36,7 @@ module Hangman
 
 
     def start
-      banner
+      puts banner
       puts "\n\n"
       puts "How would you like to start? \n(n) or new for new game, \n(l) or load for load game"
       begin

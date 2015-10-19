@@ -2,7 +2,6 @@
 module Hangman
 
   class Engine
-
     attr_accessor :game_word, :basic_array
 
     def initialize(game)
@@ -30,9 +29,8 @@ module Hangman
     @words_to_guess
   end
 
-
   def invalid_input
-  @game.decrement_life
+    @game.decrement_life
     puts "Incorrect!".green + " guessed " + " #{@game.lives} guesses left".green
     puts "You lost, WORD was #{@game_word} " if @game.lives <= 0
     @status= :wrong
@@ -71,5 +69,4 @@ module Hangman
     end
 
   end
-
 end
