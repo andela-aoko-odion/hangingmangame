@@ -18,9 +18,9 @@ describe Hangman do
       expect(Hangman::Game).not_to be nil
       end
 
-      describe "#play" do
-        it "contains an object" do
-        expect(Hangman.play).not_to be nil
-        end
-      end
+      #describe "#play" do
+      #  it "contains an object" do
+      #  expect(Hangman.play).not_to be nil
+      #  end
+      #end
 end

@@ -1,5 +1,4 @@
 require_relative 'spec_helper'
-
 include Hangman
 
 describe Game do
@@ -7,6 +6,8 @@ describe Game do
 
   before(:each) do
     @game = Game.new
+    @engine = Engine.new(self)
+    @file_op = FileOp.new(@engine, self)
   end
 
   describe "#banner" do
@@ -37,112 +38,79 @@ describe Game do
     it "not be Fixnum" do
       @game.banner.should_not be_kind_of(Fixnum)
     end
+
+    it "setup game for new play" do
+      allow(@game).to receive(:words_to_guess).and_return("friend")
+      allow(@game).to receive(:scrambled).and_return('______')
+      allow(@game).to receive(:lives).and_return(5)
+      allow(@game).to receive(:setup).and_return(:lives)
+      expect(@game.setup).to eql(:lives)
+    end
   end
 
   describe "#start" do
-    it "should not be nil" do
-      expect(game.banner.should) != nil
-    end
-    #it "expect type string" do
-    #{}ave the string" do
-    #  @game.save.should include("How would you like to start")
-    #end
-    it "not be Fixnum" do
-      @game.banner.should_not be_kind_of(Fixnum)
+    it "displays the games first screen" do
+      allow(@game).to receive(:banner).and_return(:banner)
+      allow(@game).to receive(:start).and_return(:banner)
+      expect(@game.start).to eql(:banner)
     end
   end
 
   describe "#play" do
-    it "should not be nil" do
-      expect(@game.play).to not_be nil
-    end
-    it "expect type string" do
-      specify {expect {print "foo"}.to output.to_stdout }
-    end
-    it "not be Fixnum" do
-      @game.play.should_not be_kind_of(Fixnum)
-    end
-  end
-
-  describe "#basic_actions" do
-    it "should not be nil" do
-      game = @game.basic_actions
-      expect(game.should) != nil
-    end
-    it "expect type hash" do
-        hash = @game.banner
-      is_expected.to have_key(:setup)
-    end
-    it "prints to have key" do
-      is_expected.to have_key(:setup)
-    end
-    it "prints to stdout" do
-      specify { @game.basic_actions.should include(:load_setup) }
-    end
-    it "not be Fixnum" do
-      @game.banner.should_not be_kind_of(Fixnum)
+    it "plays the Game" do
+      allow(@game).to receive(:scrambled).and_return("______")
+      allow(@game).to receive(:lives).and_return(5)
+      allow(@game).to receive(:put).and_return('f')
+      allow(@game).to receive(:play).and_return(:scrambled)
+      expect(@game.play).to eql(:scrambled)
     end
   end
 
   describe "#save_or_quit" do
-    it "should not be nil" do
-      expect(game.quit.should) != nil
-    end
-    it "type hash" do
-      expect(@game.quit).to be_instance_of(Hash)
-      @game.quit.should be_kind_of(Hash)
+    it "returns a save Hash" do
+      expect(@game.save_or_quit).to be_kind_of(Hash)
     end
   end
 
-  describe "#quit" do
-    it "should not be nil" do
-      expect(game.quit.should) != nil
-    end
-    it "prints to stdout" do
-      should include(:save_to_file)
-    end
-    it "not be Fixnum" do
-      @game.quit.should_not be_kind_of(Fixnum)
+  describe "#basic_actions" do
+    it "returns an Hash of basic allowed actions" do
+      expect(@game.basic_actions).to be_kind_of(Hash)
     end
   end
 
   describe "#save" do
-    it "should not be nil" do
-      expect(game.banner.should) != nil
-    end
-    it "expect type Hash" do
-      @game.save.should include(:save_to_file)
-    end
-    it "not have :foobar" do
-      it should_not include(:foobar)
+    it "returns an hash of save action" do
+      expect(@game.save).to be_kind_of(Hash)
     end
   end
 
+  describe "#decrement_life" do
+    it "reduces live by one on wrong guess" do
+      allow(@game).to receive(:lives).and_return(5)
+      expect(@game.lives).to eql(5)
+      end
+  end
+
   describe "#won" do
-    it "should not be nil" do
-      expect(game.banner.should) != nil
-    end
-    it "expect type string" do
-      @game.banner.should_not be_kind_of(NilClass)
-    end
-    it "returns true" do
-      @game.banner.should be true
+    it "actions when game is already started" do
+    allow(@game).to receive(:won).and_return(true)
+    expect(@game.won).to be true
     end
   end
 
   describe "#save_id" do
-    it "should not be nil" do
-      expect(game.banner.should) != nil
-    end
-    it "expect type string" do
-        g = @game.save_id
-      expect(g).to exist
-    end
-    it "print to stdout" do
-      expect(@game.save_id).to output.to_stdout
-      @game.banner.should_not be_kind_of(Fixnum)
+    it "request user to enter saved game ID" do
+    allow(@game).to receive(:put).and_return(nil)
+    allow(@game).to receive(:save_id).and_return(3)
+    expect(@game.save_id).to eql(3)
     end
   end
 
+  describe "#load_setup" do
+    it "load setup from file" do
+    allow(@game).to receive(:load_setup).and_return(3)
+    expect(@game.load_setup).to eql(3)
+    end
+  end
 
 end

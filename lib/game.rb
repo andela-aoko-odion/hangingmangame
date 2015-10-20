@@ -115,7 +115,6 @@ module Hangman
     id = save_id
     @file_op.load_game @file_op.load_saved_data(id.to_i)
   end
-
   end
 
 end
