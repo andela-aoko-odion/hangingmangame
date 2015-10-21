@@ -1,5 +1,5 @@
 require_relative "hangman/version"
-require_relative "./game"
+require_relative "hangman/game"
 module Hangman
 extend self
   def play
