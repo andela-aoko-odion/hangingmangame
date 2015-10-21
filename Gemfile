@@ -4,5 +4,5 @@ source 'https://rubygems.org'
 gemspec
 gem 'rspec', :require => false, :group => :test
 gem 'simplecov', :require => false, :group => :test
-gem 'coveralls', require: false
-gem 'simplecov-shield', github: 'aterris/simplecov-shield'
+#gem 'coveralls', require: false
+#gem 'simplecov-shield', github: 'aterris/simplecov-shield'
