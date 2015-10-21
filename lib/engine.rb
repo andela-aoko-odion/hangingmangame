@@ -2,7 +2,7 @@
 module Hangman
 
   class Engine
-    attr_accessor :game_word, :basic_array
+    attr_accessor :game_word, :basic_array, :status
 
     def initialize(game)
       @game = game
@@ -14,9 +14,9 @@ module Hangman
 
   def create_word_array
     @basic_array = Hash.new
-    words_array.each_with_index{ |val, index|
-      @basic_array[val] ||= []
-      @basic_array[val] << index
+    words_array.each_with_index { |val, index|
+    @basic_array[val] ||= []
+    @basic_array[val] << index
     }
   end
 
@@ -33,7 +33,7 @@ module Hangman
     @game.decrement_life
     puts "Incorrect!".green + " guessed " + " #{@game.lives} guesses left".green
     puts "You lost, WORD was #{@game_word} " if @game.lives <= 0
-    @status= :wrong
+    @status = :wrong
   end
 
   def correct_input(char)
