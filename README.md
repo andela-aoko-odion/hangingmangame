@@ -56,6 +56,7 @@ Already started game can also be saved and loaded again later
 
 ## Installation
 
+
 Add this line to your application's Gemfile:
 
 ```ruby
