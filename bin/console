@@ -1,8 +1,14 @@
 #!/usr/bin/env ruby
 
 require "bundler/setup"
+<<<<<<< HEAD
 require "hangman_andrew"
 
+=======
+require "hangman"
+
+Hangman.play
+>>>>>>> 09ecf2f140b57f7a04081e7c2d687368b4257b5e
 # You can add fixtures and/or initialization code here to make experimenting
 # with your gem easier. You can also use a different console, if you like.
 
@@ -10,5 +16,10 @@ require "hangman_andrew"
 # require "pry"
 # Pry.start
 
+<<<<<<< HEAD
 require "irb"
 IRB.start
+=======
+# require "irb"
+# IRB.start
+>>>>>>> 09ecf2f140b57f7a04081e7c2d687368b4257b5e
