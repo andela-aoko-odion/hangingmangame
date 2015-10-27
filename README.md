@@ -107,7 +107,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 <<<<<<< HEAD
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/hangman_andrew.
+Bug reports and pull requests are welcome on GitHub at https://github.com/ande/hangman_andrew.
 
 =======
 Bug reports and pull requests are welcome on GitHub at https://github.com/andela-aoko-odion/hangman. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.

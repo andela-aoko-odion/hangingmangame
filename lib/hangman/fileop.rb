@@ -1,6 +1,6 @@
 require "json"
 
-module Hangman
+module HangmanAndrew
 
   class FileOp
 

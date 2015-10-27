@@ -1,6 +1,7 @@
-module Hangman
-  class Engine
-
+module HangmanAndrew
+module Engine
+  
+ class Generator
     def pick
       upper_limit = File.readlines('5desk.txt').size
       word = File.readlines('5desk.txt')[rand(upper_limit)].chomp.downcase
@@ -13,6 +14,8 @@ module Hangman
           return word
         end
       end
+    end
+
     end
   end
 end

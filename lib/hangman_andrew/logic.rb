@@ -1,3 +1,4 @@
+
 module HangmanAndrew
   module Logic
     def incorrect_input
