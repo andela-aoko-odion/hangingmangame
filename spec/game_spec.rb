@@ -1,5 +1,4 @@
-
-
+require_relative "spec_helper"
 include hangman
 
 describe Game do

@@ -1,4 +1,6 @@
+
 require_relative 'spec_helper'
+require "./logic"
 
 describe HangmanAndrew::Game do
   let(:game) {HangmanAndrew::Game.new}
@@ -6,13 +8,6 @@ describe HangmanAndrew::Game do
     allow_message_expectations_on_nil
     allow(game).to receive(:puts).and_return nil
     allow(game).to receive(:gets).and_return("p")
-  end
-
-  describe "#start" do
-    it "should start the game" do
-      allow(game).to receive(:confirm).and_return("Started")
-      expect(game.start).to eq("Started")
-    end
   end
 
   it "returns an instance of Game" do
@@ -52,11 +47,11 @@ describe HangmanAndrew::Game do
         end
       end
 
-      describe "#actions_allowed" do
-        it "should be instance of Hash" do
-          expect(@game.actions_allowed).to be_an_instance_of(Hash)
-        end
-      end
+      # describe "#actions_allowed" do
+      #   it "should be instance of Hash" do
+      #     expect(@game.actions_allowed).to be_an_instance_of(Hash)
+      #   end
+      # end
 
       # describe "#quit_game" do
       #   it "should puts I want to quit your game" do

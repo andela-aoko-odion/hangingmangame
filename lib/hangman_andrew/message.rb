@@ -13,7 +13,11 @@ module HangmanAndrew
     end
 
     def play_msg
-      "Press (p) to play, (i) to read instructions, (c) to continue where you left off, (q) to qiut the game".green
+      "Press (p) to play, (c) to continue where you left off, (q) to quit the game".green
+    end
+
+    def instructions
+      "\tHangman Game in Ruby\n \t(p) to play\n \t(c) to continue saved game\n \t(i) to show this help\n".blue
     end
 
     def saved
@@ -25,10 +29,10 @@ module HangmanAndrew
       "\t\t#                                                     #\n" \
       "\t\t#                    Hangman Game                     #\n" \
       "\t\t#                                                     #\n" \
-      "\t\t#                         by                          #\n" \
-      "\t\t#                  Andrew Oko-odion                   #\n" \
+      "\t\t#                         In                          #\n" \
+      "\t\t#                        Ruby                         #\n" \
       "\t\t#######################################################\n" \
-        .green
+        .blue
     end
 
   end

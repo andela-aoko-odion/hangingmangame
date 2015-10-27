@@ -1,6 +1,6 @@
 module HangmanAndrew
 module Engine
-  
+
  class Generator
     def pick
       upper_limit = File.readlines('5desk.txt').size
@@ -10,9 +10,8 @@ module Engine
     def pick_word
       while true
         word = pick
-        if word.length > 5 && word.length <= 12
+        break if word.length > 10 && word.length <= 12
           return word
-        end
       end
     end
 

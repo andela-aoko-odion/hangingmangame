@@ -1,8 +1,8 @@
-# -*- coding: iso-8859-8 -*-
 require_relative 'engine'
 require_relative 'input'
 require_relative 'logic'
 require_relative 'fileop'
+require_relative 'message'
 
 module HangmanAndrew
   class Game
@@ -21,8 +21,9 @@ module HangmanAndrew
       confirm
     end
 
+
     def confirm
-      puts "#{ @msg.play_msg}"
+      puts "#{ @msg.play_msg }"
       entry = input
       case entry
         when "p"
@@ -41,9 +42,10 @@ module HangmanAndrew
 
         play_new(data["word"])
         when "i"
-          puts "Instructions"
+          puts @msg.instructions
         when "*"
-          puts "saving session"
+          save_session(@name, @lives, @gen, @scrambled_word, @word_index)
+          puts "saving session done"
         else
           invalid
       end
@@ -60,7 +62,8 @@ module HangmanAndrew
           puts  @scrambled_word
           puts  @gen
           puts "Enter your guess"
-          char = input.strip; actions_allowed.include? char
+          char = input.strip
+          actions_allowed.include? char
           check_input(find_index, @scrambled_word, char)
           break if @lives == 0 || analyze_game_input(@scrambled_word, gen)
       end

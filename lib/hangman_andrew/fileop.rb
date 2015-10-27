@@ -26,22 +26,33 @@ module HangmanAndrew
     end
 
     def show_saved_sessions
+      line_no = []
       p "id   words_left   lives   player_name"
       line = File.readlines("hangman_andrew/data.json")
         line.each_with_index do |data, indx|
           ln = JSON.parse(data)
+          line_no << indx
           p " #{indx}       #{ln["scrambled_word"]}     #{ln["lives"]}         #{ln["player_name"]}"
         end
+        line_no
     end
 
     def get_session_id
-      puts "please Enter Your Game id"
+      puts "please Enter Your Game id number"
       id = gets.chomp.downcase.strip.to_i
+      line_no = show_saved_sessions
+      if line_no.include? id
+        return id
+      else
+        print "Invalid Game id"
+        sleep 1
+        get_session_id
+      end
     end
 
 
     def restart_session(file_name)
-        show_saved_sessions
+        #show_saved_sessions
         index = get_session_id
         line = load_file(file_name, index)
         data = JSON.parse(line)
@@ -59,9 +70,9 @@ module HangmanAndrew
       if name.match /^[A-z]+$/
        name
       else
-        puts " Invalid character included enter [a-z] only"
-        sleep 2
-        get_player_name
+       puts " Invalid character included enter [a-z] only"
+       sleep 2
+       get_player_name
       end
     end
 

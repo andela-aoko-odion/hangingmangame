@@ -1,6 +1,7 @@
 
 module HangmanAndrew
   module Logic
+    
     def incorrect_input
       @lives -= 1
       puts "That was wrong, You have #{@lives} chances left"
@@ -44,5 +45,7 @@ module HangmanAndrew
          '*s' => :save_game
        }
     end
+
+
   end
 end
