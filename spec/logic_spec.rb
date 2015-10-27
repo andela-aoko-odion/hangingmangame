@@ -1,57 +1,49 @@
+require 'spec_helper'
 
-require_relative 'spec_helper'
-require "./logic"
+describe HangmanAndrew::Logic do
 
-describe HangmanAndrew::Game do
-  let(:game) {HangmanAndrew::Game.new}
+  let(:logic) { Class.new.extend(HangmanAndrew::Logic)}
   before :each do
     allow_message_expectations_on_nil
-    allow(game).to receive(:puts).and_return nil
-    allow(game).to receive(:gets).and_return("p")
+    allow(logic).to receive(:puts).and_return nil
+    allow(logic).to receive(:gets).and_return nil
   end
 
-  it "returns an instance of Game" do
-      @game.should be_an_instance_of(Game)
+  describe "#find_index" do
+    it "returns an hash of the index of selected word" do
+      expect(logic.find_index("hello")).to eql({"h"=>[0], "e"=>[1], "l"=>[2, 3], "o"=>[4]})
     end
+  end
 
-    describe "#find_index" do
-      it "returns the index of the characters supplied" do
-        expect(@game.find_index("helloworld")["l"]).to eql([2, 3, 8])
-      end
+  describe "#update_scrambled" do
+    it "returns an updated scrambled word" do
+      index = logic.find_index("helloworld")
+      expect(logic.update_scrambled(index, "__________", 'l')).to eql("__ll____l_")
     end
+  end
 
-    describe "#update_scrambled" do
-      it "returns an updated scrambled word" do
-        index = @game.find_index("helloworld")
-        expect(@game.update_scrambled(index, "__________", 'l')).to eql([2, 3, 8])
-      end
+  describe "#winner" do
+    it "returns true if player wins" do
+      expect(logic.winner([])).to eql(true)
     end
+  end
 
-    describe "#winner" do
-      it "returns true if player wins" do
-        expect(@game.winner([])).to eql(true)
-      end
-    end
 
-    # describe "#loser" do
-      #   it "return true if player lose" do
-      #     allow(@game).to recieve(@lives).and_return(true)
-      #     expect(@game.loser).to eql(true)
-      #   end
-      # end
 
       describe "#check_input" do
         it "update scrambled word with correctly guessed letter, and returns its index" do
-          indx = @game.find_index("helloworld")
-          expect(@game.check_input(indx, "__________", "r")).to eql([7])
+          find_index = {"h"=>[0], "e"=>[1], "l"=>[2, 3], "o"=>[4]}
+          expect(logic.check_input(find_index, "__________", "e")).to eql("_e________")
+        end
+
+        it "tell if input is wrong" do
+          find_index = {"h"=>[0], "e"=>[1], "l"=>[2, 3], "o"=>[4]}
+          allow(logic).to receive(:incorrect_input).and_return("incorrect")
+          expect(logic.check_input(find_index, "__________", "z")).to eql("incorrect")
         end
       end
 
-      # describe "#actions_allowed" do
-      #   it "should be instance of Hash" do
-      #     expect(@game.actions_allowed).to be_an_instance_of(Hash)
-      #   end
-      # end
+    
 
       # describe "#quit_game" do
       #   it "should puts I want to quit your game" do

@@ -1,8 +1,8 @@
 
 module HangmanAndrew
   module Logic
-    
-    def incorrect_input
+
+    def incorrect_input #(@lives)
       @lives -= 1
       puts "That was wrong, You have #{@lives} chances left"
     end
@@ -15,7 +15,7 @@ module HangmanAndrew
       word_index
     end
 
-    def update_scrambled(find_index, scrambled_word, char)
+    def update_scrambled(find_index, scrambled_word, char) #@lives
       find_index[char].each{ |i|
        scrambled_word[i] = char}
       find_index.delete (char)
@@ -31,12 +31,10 @@ module HangmanAndrew
     end
 
     def analyze_game_input(word_index, gen)
-      winner(word_index) if word_index == gen
-    end
-
-    def winner(word_index)
-      puts "You win. The word is #{@gen}"
-      confirm
+      if word_index == gen
+          puts "You win"
+          confirm
+      end
     end
 
     def actions_allowed

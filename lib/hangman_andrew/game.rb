@@ -67,7 +67,7 @@ module HangmanAndrew
           check_input(find_index, @scrambled_word, char)
           break if @lives == 0 || analyze_game_input(@scrambled_word, gen)
       end
-      puts "you are hanged, the word was #{gen}"
+      puts "#{@msg.gameover(gen)}"
       @lives = 5
       confirm
     end

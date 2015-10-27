@@ -8,9 +8,12 @@ module HangmanAndrew
       "Congratulation You won"
     end
 
-    def lose
+    def gameover(gen)
       "Game Over! you losed!"
+      "you are hanged, the word was #{gen}"
     end
+
+
 
     def play_msg
       "Press (p) to play, (c) to continue where you left off, (q) to quit the game".green

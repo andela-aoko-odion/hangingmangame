@@ -2,10 +2,9 @@
 /.yardoc
 /Gemfile.lock
 /_yardoc/
-<<<<<<< HEAD
+
 /coverage/
-=======
->>>>>>> 09ecf2f140b57f7a04081e7c2d687368b4257b5e
+
 /doc/
 /pkg/
 /spec/reports/
