@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe HangmanAndrew::Logic do
+describe Hangman::Logic do
 
-  let(:logic) { Class.new.extend(HangmanAndrew::Logic)}
+  let(:logic) { Class.new.extend(Hangman::Logic)}
   before :each do
     allow_message_expectations_on_nil
     allow(logic).to receive(:puts).and_return nil
@@ -43,7 +43,7 @@ describe HangmanAndrew::Logic do
         end
       end
 
-    
+
 
       # describe "#quit_game" do
       #   it "should puts I want to quit your game" do

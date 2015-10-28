@@ -1,5 +1,5 @@
 
-module HangmanAndrew
+module Hangman
   module Logic
 
     def incorrect_input #(@lives)

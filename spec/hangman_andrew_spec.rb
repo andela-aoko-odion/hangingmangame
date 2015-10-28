@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe HangmanAndrew do
+describe Hangman do
   it 'has a version number' do
-    expect(HangmanAndrew::VERSION).not_to be nil
+    expect(Hangman::VERSION).not_to be nil
   end
 
   it 'does something useful' do

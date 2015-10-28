@@ -1,7 +1,7 @@
 require "spec_helper"
 
-describe HangmanAndrew::Engine do
-  let(:engine){HangmanAndrew::Engine::Generator.new}
+describe Hangman::Engine do
+  let(:engine){Hangman::Engine::Engine.new}
   before :each do
 
   end

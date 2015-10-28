@@ -1,57 +1,56 @@
 require "json"
+require "colorize"
+require_relative "message"
 
-module HangmanAndrew
+module Hangman
 
-  class FileOp
+  module FileOp
 
-    def initialize(engine, game)
-      @save_file = "db.json"
-      @engine = engine
-      @game = game
+    def load_game
+      index = gets.chomp.to_i
+      data = load_file('data.json', index)
     end
 
-    def analyze_input(char)
-      if @game.words_to_guess.include? char
-        @engine.correct_input(char)
+    def save_file(file_name, data)
+      File.open(file_name, 'a+') do |f|
+        f.puts data
+      end
+    end
+
+    def load_file(file_name, index=nil)
+      if index
+        line = File.readlines(file_name)[index]
+        return data = JSON.parse(line)
+      end
+    end
+
+    def delete_line(ln)
+      str = ""
+      f = File.open("data.json", 'r+')
+      line = f.readlines.each_with_index do |line, index|
+        str += line if index != ln
+      end
+      str
+    end
+
+    def write_data(data)
+      f = File.open("data.json", "w")
+      f.write(data)
+      f.close
+      true
+    end
+
+    def get_player_name
+      puts " Enter player name"
+      name = gets.chomp.downcase
+      if name.match /^[A-z]+$/
+        return name
       else
-        @engine.invalid_input
+        puts " Invalid character [a-z] only"
+        sleep 2
+        get_player_name
       end
     end
 
-    def supported_actions(input)
-      return true if @game.basic_actions.keys.include? input
-      @input_type = :unsupported
-      false
-    end
-
-    def save_to_file
-      File.open(@save_file, 'a+') do |f|
-        f.puts to_h.to_json
-      end
-      puts my_save_id
-    end
-
-    def my_save_id
-      "Your game ID is: #{File.readlines(@save_file).size - 1}.\n To continue your saved game, enter this id when prompted for a game record"
-    end
-
-     def load_saved_data(data_line)
-    File.readlines('db.json')[data_line.to_i]
   end
-
-  def load_game(json_data)
-    x = JSON.parse(json_data)
-    @game.lives = x["lives"]
-    @game.words_to_guess = x["words_to_guess"]
-    @engine.basic_array = x["basic_array"]
-    @engine.game_word = x["game_word"]
-    @game.scrambled = x["scrambled"]
-  end
-
-  def to_h
-    {lives: @game.lives, words_to_guess: @game.words_to_guess, basic_array: @engine.basic_array, game_word: @engine.game_word, scrambled: @game.scrambled}
-  end
-
-  end
-
 end
