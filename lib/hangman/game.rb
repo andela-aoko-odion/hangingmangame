@@ -6,6 +6,7 @@ require_relative "engine"
 
 module Hangman
   class Game
+    attr_reader :quit, :status
     include Hangman::FileOp
      def initialize
        @msg = Message.new
@@ -75,6 +76,7 @@ module Hangman
         puts @msg.game_lose(@word)
         start
       elsif  @status == :quit
+        exit
       end
     end
 
@@ -104,9 +106,9 @@ module Hangman
     def continue_game
       ids = show_saved_sessions
       puts @msg.supply_save_id
-      @game_id = gets.chomp.to_i
-      if ids.include? @game_id
-        data = load_file("data.json", @game_id)
+      @game_id = gets.chomp
+      if ids.include? @game_id.to_i
+        data = load_file("data.json", @game_id.to_i)
         @word = data['word']
         @lives = data['lives']
         @word_index = data['word_index']
@@ -115,7 +117,7 @@ module Hangman
         @player = data['player']
         puts @msg.greet_player(@player)
         play_new(@word, @lives, @word_index, @scrambled_word, @player)
-      elsif game_id == 'q' || game_id == 'quit'
+      elsif @game_id == 'q' || @game_id == 'quit'
         start
       else
         puts @msg.invalid_game_id
@@ -130,7 +132,7 @@ module Hangman
         check_input(word_index, scrambled_word, char)
         puts scrambled_word
       else
-        send actions_allowed[char]
+       send actions_allowed[char]
       end
     end
 
