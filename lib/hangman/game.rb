@@ -8,10 +8,10 @@ module Hangman
   class Game
     attr_reader :quit, :status
     include Hangman::FileOp
-     def initialize
-       @msg = Message.new
-       @engine = Engine.new
-     end
+    def initialize
+      @msg = Message.new
+      @engine = Engine.new
+    end
 
     def find_index(word)
       word_index = {}
@@ -132,7 +132,7 @@ module Hangman
         check_input(word_index, scrambled_word, char)
         puts scrambled_word
       else
-       send actions_allowed[char]
+        send actions_allowed[char]
       end
     end
 
@@ -174,5 +174,3 @@ module Hangman
   end
 end
 
-# he = Hangman::Game.new
-# he.start

@@ -9,7 +9,7 @@ module Hangman
     def pick_word
       while true
         word = pick
-         return word if word.length > 5 && word.length <= 12
+        return word if word.length > 5 && word.length <= 12
       end
     end
 

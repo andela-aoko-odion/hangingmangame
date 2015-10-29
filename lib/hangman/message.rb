@@ -55,7 +55,7 @@ module Hangman
     end
 
     def greet_player(player)
-        " Welcome back #{player}"
+      " Welcome back #{player}"
     end
 
     def banner
