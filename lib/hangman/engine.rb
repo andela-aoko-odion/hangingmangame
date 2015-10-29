@@ -2,8 +2,8 @@ module Hangman
   class Engine
 
     def pick
-      upper_limit = File.readlines('5desk.txt').size
-      word = File.readlines('5desk.txt')[rand(upper_limit)].chomp.downcase
+      upper_limit = File.readlines('../hangman/5desk.txt').size
+      word = File.readlines('../hangman/5desk.txt')[rand(upper_limit)].chomp.downcase
     end
 
     def pick_word

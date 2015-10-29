@@ -162,7 +162,7 @@ module Hangman
         puts @msg.quiting_game
         exit
       else
-        puts "Invalid Entry"
+        puts "invalid entry"
         invalid
       end
     end

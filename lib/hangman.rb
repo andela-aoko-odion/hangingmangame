@@ -5,7 +5,7 @@ require_relative "hangman/message.rb"
 require_relative "hangman/engine.rb"
 
 
-# module Hangman
-#   @game = Game.new
-#   @game.start
-# end
+module Hangman
+  @game = Game.new
+  @game.start
+end
