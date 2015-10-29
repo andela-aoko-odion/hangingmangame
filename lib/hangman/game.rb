@@ -145,6 +145,7 @@ module Hangman
     end
 
     def start
+      puts @msg.banner
       puts @msg.start_info
       input = gets.chomp
       case input
@@ -154,6 +155,7 @@ module Hangman
         @scrambled_word = scrambled_word = '_' * @word.length
         @status = :on
         @word_index = word_index = find_index(@word)
+        puts @msg.start_info_2
         play_new(@word, @lives, @word_index, @scrambled_word)
       when 'l'
         puts @msg.loading_game
@@ -173,4 +175,3 @@ module Hangman
 
   end
 end
-

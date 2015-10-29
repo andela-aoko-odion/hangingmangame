@@ -41,12 +41,12 @@ module Hangman
     end
 
     def get_player_name
-      puts " Enter player name"
+      puts "username: "
       name = gets.chomp.downcase
       if name.match /^[A-z]+$/
         return name
       else
-        puts " Invalid character [a-z] only"
+        puts "invalid character [a-z] only"
         sleep 2
         get_player_name
       end

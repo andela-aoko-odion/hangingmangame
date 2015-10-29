@@ -47,7 +47,10 @@ module Hangman
     end
 
     def start_info
-      " [n] new game [l] load saved game "
+      " [n] new game [l] load saved game and [q] to quit game".yellow
+    end
+    def start_info_2
+      " [*] to save [#] to quit game".yellow
     end
 
     def loading_game
