@@ -7,7 +7,7 @@ module Hangman
     end
 
     def command
-      " Quit command recieved".bule
+      " Quit command recieved".blue
     end
 
     def quiting_game

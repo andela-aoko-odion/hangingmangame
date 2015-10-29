@@ -7,7 +7,6 @@ require_relative "engine"
 module Hangman
   class Game
     include Hangman::FileOp
-
      def initialize
        @msg = Message.new
        @engine = Engine.new
@@ -70,12 +69,12 @@ module Hangman
       if winner(word_index)
         write_data(delete_line(@game_id)) if @game_id
         puts @msg.game_won
-        exit
+        start
       elsif loser
         write_data(delete_line(@game_id)) if @game_id
         puts @msg.game_lose(@word)
-        exit
-    elsif  @status == :quit
+        start
+      elsif  @status == :quit
       end
     end
 
@@ -161,12 +160,17 @@ module Hangman
         puts @msg.quiting_game
         exit
       else
-        start
+        puts "Invalid Entry"
+        invalid
       end
+    end
+
+    def invalid
+      start
     end
 
   end
 end
 
-he = Hangman::Game.new
-he.start
+# he = Hangman::Game.new
+# he.start
