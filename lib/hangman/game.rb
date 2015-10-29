@@ -105,10 +105,11 @@ module Hangman
 
     def continue_game
       ids = show_saved_sessions
+      puts @msg.start_info_2
       puts @msg.supply_save_id
-      @game_id = gets.chomp
+      @game_id = gets.chomp.to_i
       if ids.include? @game_id.to_i
-        data = load_file("data.json", @game_id.to_i)
+        data = load_file("data.json", @game_id)
         @word = data['word']
         @lives = data['lives']
         @word_index = data['word_index']
@@ -125,7 +126,6 @@ module Hangman
         continue_game
       end
     end
-
 
     def play(char, word_index, scrambled_word)
       unless actions_allowed.include? char
@@ -164,14 +164,14 @@ module Hangman
         puts @msg.quiting_game
         exit
       else
-        puts "invalid entry"
-        invalid
+        puts "invalid character"
+        start
       end
     end
 
-    def invalid
-      start
-    end
+    # def invalid
+    #   start
+    # end
 
   end
 end

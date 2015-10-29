@@ -3,35 +3,39 @@ module Hangman
   class Message
 
     def wrong_input(lives)
-      "wrong guess you have #{lives} lives left".green
+      "wrong Guess entered ".red + " Lives Left: ".green + "#{lives}".white
     end
 
     def command
-      " Quit command recieved".blue
+      "Quit recieved!!!".red
     end
 
     def quiting_game
-      "Quiting Game .................................done".blue
+      "Quiting Game ................................... done".green
+    end
+
+    def saving_command
+        "Save recieved!!!".green
     end
 
     def save_game_successful
-      "saving was successful".green
+      "Save successful!!!".green
     end
 
     def game_won
-      "Congratulations you Won You Got Saved".green
+      "Congratulations!!! You Got Saved".green
     end
 
     def game_lose(word)
-      "Sorry you lose word was #{word} You are hanged".blue
+      "The Word was :".yellow + " #{word} ".white + " You are hanged!\n".yellow
     end
 
     def saved_header
-      " id  words_left lives      player name\n".blue
+      " id Scrambled_word   Lives      Username\n".yellow
     end
 
     def supply_save_id
-      "please enter game id".blue
+      "Enter Game id: ".yellow
     end
 
     def invalid_game_id
@@ -39,26 +43,26 @@ module Hangman
     end
 
     def invalid_name
-      " invalid characters! [a-z] only".red
+      "invalid characters! [a-z] only".red
     end
 
     def guess_word(scrambled_word)
-      "Whats your guess? : #{scrambled_word}"
+      "Whats your guess? : " + " #{scrambled_word}".yellow
     end
 
     def start_info
-      " [n] new game [l] load saved game and [q] to quit game".yellow
+      "[n] start new game [l] load saved game [q] quit game".yellow
     end
     def start_info_2
-      " [*] to save [#] to quit game".yellow
+      "\nRemember !!!".blue + "\n[*] => save [#] => quit\n".blue
     end
 
     def loading_game
-      " Loading saved game ............................done".blue
+      " Loading saved game ...................................done".green
     end
 
     def greet_player(player)
-      " Welcome back #{player}"
+      "\nWelcome back #{player}:"
     end
 
     def banner
@@ -71,7 +75,6 @@ module Hangman
       "\t\t#######################################################\n" \
         .blue
     end
-
 
   end
 end
