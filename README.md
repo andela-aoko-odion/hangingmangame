@@ -1,22 +1,19 @@
-# HangmanAndrew
-
+# Hangman
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/hangman_andrew`. To experiment with that code, run `bin/console` for an interactive prompt.
 
-TODO: Delete this and the text above, and describe your gem
+This is a simple Hangman game written in ruby
 
 ## Installation
-
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'hangman_andrew'
+gem 'hangman'
 
 # Hangman
 
-[![Coverage Status](https://cdn.rawgit.com/andela-aoko-odion/hangman/master/coverage/coverage.svg)](https://coveralls.io/github/andela-aoko-odion/hangman?branch=master)
+[![Coverage Status](https://coveralls.io/repos/andela-aoko-odion/hangman/badge.svg?branch=master&service=github)](https://coveralls.io/github/andela-aoko-odion/hangman?branch=master)
 
 This is a simulation of the classic Hangman Game in Ruby.
-
 ## Background
 
 When a player initiates the game
@@ -27,40 +24,29 @@ previously saved game.
 
 ## example:
 	 How would you like to start?
-	 (n) or new for new game,
-	 (l) or load for load game
+	 (n) or new to play a new game,
+	 (l) or load to continue a saved game
 
 
 If new game is selected, the computer selects a word
-and scrambles the word by replace the hidden selected word with ______.
+and scrambles the word by replace the hidden selected word with the underscore characters  '______'
 
 ## example:
 	 How would you like to start?
          (n) or new for new game,
          (l) or load for load game
 
-	 Have fun guessing what I have in mind: _____.
 	 After 5 wrong guesses you have lost the game.
- 	 Guess_word : _____
+ 	 Guess word : _____
 
 For every turn the player is expected to guess a letter
 from the computer guessed word.
 
-     	 Incorrect! guessed  4 guesses left
-	  Guess_word : _____
-	  e
-	  Incorrect! guessed  3 guesses left
- 	  Guess_word : _____
-	  i
-	  Correct! keep guessing
- 	  Guess_word : __i__
-
 Each Incorrect guess will reduce the players entitled chance by 1
 
-when the player finally guess the scrambled word he is
-greeted with the message
+when the player finally guess a letter on the scrambled word correctly
+tha view is updated with that correct letter
 
-	Correct! keep guessing
 	Guess_word : la_yngitis
 	r
 	Congratulations. You have won
@@ -69,9 +55,7 @@ Already started game can also be saved and loaded again later
 
 ## Installation
 
-
 Add this line to your application's Gemfile:
-
 
 gem 'hangman'
 
@@ -82,11 +66,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install hangman_andrew
-
-## Usage
-
-TODO: Write usage instructions here
+    $ gem install hangman
 
 ## Development
 
