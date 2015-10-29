@@ -6,11 +6,10 @@ This is a simple Hangman game written in ruby
 ## Installation
 Add this line to your application's Gemfile:
 
-```ruby
+ruby
 gem 'hangman'
 
 # Hangman
-
 [![Coverage Status](https://coveralls.io/repos/andela-aoko-odion/hangman/badge.svg?branch=master&service=github)](https://coveralls.io/github/andela-aoko-odion/hangman?branch=master)
 
 This is a simulation of the classic Hangman Game in Ruby.
