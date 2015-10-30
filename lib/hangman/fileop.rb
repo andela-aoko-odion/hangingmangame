@@ -4,8 +4,7 @@ require_relative "message"
 
 module Hangman
 
-  module FileOp
-
+  class FileOp
     def load_game
       index = gets.chomp.to_i
       data = load_file('data.json', index)

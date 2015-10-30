@@ -7,10 +7,11 @@ require_relative "engine"
 module Hangman
   class Game
     attr_reader :quit, :status
-    include Hangman::FileOp
+
     def initialize
       @msg = Message.new
       @engine = Engine.new
+      @fileop = FileOp.new
     end
 
     def find_index(word)
@@ -58,6 +59,14 @@ module Hangman
       }
     end
 
+    def start_actions
+      {
+        'l' => :load_game,
+        'n' => :new_game,
+        'q' => :quit_game
+      }
+    end
+
     def quit_game
       @status = :quit
       puts @msg.command
@@ -68,11 +77,11 @@ module Hangman
 
     def analyze_game_input(word_index)
       if winner(word_index)
-        write_data(delete_line(@game_id)) if @game_id
+        @fileop.write_data(@fileop.delete_line(@game_id)) if @game_id
         puts @msg.game_won
         start
       elsif loser
-        write_data(delete_line(@game_id)) if @game_id
+        @fileop.write_data(@fileop.delete_line(@game_id)) if @game_id
         puts @msg.game_lose(@word)
         start
       elsif  @status == :quit
@@ -80,20 +89,18 @@ module Hangman
       end
     end
 
-    def save_game(game_id=nil)
-      write_data(delete_line(@game_id)) if @game_id   # fileop
-      @player = get_player_name          # fileop
-      data = { word: @word, lives: @lives,
-        scrambled_word: @scrambled_word,
-        word_index: @word_index, player: @player }.to_json
-      save_file('data.json', data)       # fileop
-      puts @msg.save_game_successful   # message
+    def save_game
+      @fileop.write_data(@fileop.delete_line(@game_id)) if @game_id
+      @player = @fileop.get_player_name
+      data = { word: @word, lives: @lives, scrambled_word: @scrambled_word, word_index: @word_index, player: @player }.to_json
+      @fileop.save_file('data.json', data)
+      puts @msg.save_game_successful
       exit
     end
 
     def show_saved_sessions
       line_no = []
-      print print @msg.saved_header
+      print @msg.saved_header
       line = File.readlines("data.json")
       line.each_with_index do |data, indx|
         ln = JSON.parse(data)
@@ -103,23 +110,25 @@ module Hangman
       line_no
     end
 
-    def continue_game
-      ids = show_saved_sessions
-      puts @msg.start_info_2
+#continue start
+    def continue_start
+      @ids = show_saved_sessions
       puts @msg.supply_save_id
-      @game_id = gets.chomp.to_i
-      if ids.include? @game_id.to_i
-        data = load_file("data.json", @game_id)
-        @word = data['word']
-        @lives = data['lives']
-        @word_index = data['word_index']
-        @scrambled_word = data['scrambled_word']
-        @status = :on
-        @player = data['player']
-        puts @msg.greet_player(@player)
-        play_new(@word, @lives, @word_index, @scrambled_word, @player)
-      elsif @game_id == 'q' || @game_id == 'quit'
-        start
+      id = gets.chomp.to_i
+    end
+
+    def load_game_data
+      data = @fileop.load_file("data.json", @game_id)
+      @word, @lives, @word_index, @scrambled_word, @status, @player  = data['word'], data['lives'], data['word_index'], data['scrambled_word'], :on, data['player']
+      puts @msg.greet_player(@player)
+      puts @msg.start_info_2
+      play_new(@word, @lives, @word_index, @scrambled_word, @player)
+    end
+
+    def continue_game
+      @game_id = continue_start
+      if @ids.include? @game_id
+        load_game_data
       else
         puts @msg.invalid_game_id
         sleep 1
@@ -127,6 +136,7 @@ module Hangman
       end
     end
 
+#continue end
     def play(char, word_index, scrambled_word)
       unless actions_allowed.include? char
         check_input(word_index, scrambled_word, char)
@@ -144,34 +154,44 @@ module Hangman
       end
     end
 
-    def start
-      puts @msg.banner
-      puts @msg.start_info
-      input = gets.chomp
-      case input
-      when 'n'
-        @lives = 5
-        @word = @engine.pick_word
-        @scrambled_word = scrambled_word = '_' * @word.length
-        @status = :on
-        @word_index = word_index = find_index(@word)
-        puts @msg.start_info_2
-        play_new(@word, @lives, @word_index, @scrambled_word)
-      when 'l'
-        puts @msg.loading_game
-        continue_game
-      when 'q'
-        puts @msg.quiting_game
-        exit
-      else
-        puts "invalid character"
-        start
-      end
-    end
 
-    # def invalid
-    #   start
-    # end
+# start start
+def start_options
+{
+  'n' => :setup_new_game,
+  'l' => :start_loaded,
+  'q' => :start_quit
+}
+end
 
-  end
+def setup_new_game
+  @word = @engine.pick_word
+  @lives, @scrambled_word, @status, @word_index = 5, '_' * @word.length, :on, find_index(@word)
+  puts @msg.start_info_2
+  play_new(@word, @lives, @word_index, @scrambled_word)
+end
+
+def start
+  puts @msg.banner
+  puts @msg.start_info
+  input = gets.chomp
+  send start_options[input] if start_options.include?input
+end
+
+def start_loaded
+  puts @msg.loading_game
+  continue_game
+end
+
+def start_quit
+  puts @msg.quiting_game
+  exit
+end
+
+def start_invalid
+  puts "invalid character".red
+  start
+end
+
+end
 end
