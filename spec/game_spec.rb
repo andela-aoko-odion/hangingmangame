@@ -67,46 +67,8 @@ describe Hangman::Game do
     end
 
   end
-  describe "#save_game" do
-    it "saves the game" do
-      allow(game).to receive(:write_data).and_return("written")
-      allow(game).to receive(:save_file).and_return("saved")
-      allow(game.get_player_name).to receive(:gets).and_return("name")
-      expect{game.save_game}.to raise_error SystemExit
-    end
-  end
 
-  describe "#show_saved_sessions" do
-    it "shows saved sessions" do
-      allow(game).to receive(:print).and_return nil
-      allow(game).to receive(:p).and_return nil
-      expect(game.show_saved_sessions).to be_kind_of Array
-    end
-  end
 
-  describe "#continue_game" do
-    it "continues the game" do
-      allow(game).to receive(:show_saved_sessions).and_return([0])
-      allow(game.get_player_name).to receive(:gets).and_return("0")
-      allow(game).to receive(:play_new).and_return("playing")
-      expect(game.continue_game).to eql("playing")
-    end
-
-    it "quit to start again" do
-      allow(game).to receive(:show_saved_sessions).and_return([])
-      allow(game.get_player_name).to receive(:gets).and_return("q")
-      allow(game).to receive(:start).and_return("started again")
-      expect(game.continue_game).to eql("started again")
-    end
-
-    it "quit to start again" do
-      allow(game).to receive(:show_saved_sessions).and_return([])
-      allow(game.get_player_name).to receive(:gets).and_return("b")
-      allow(game).to receive(:load_game_data).and_return("loaded")
-      allow(game).to receive(:continue_start).and_return(0)
-      expect(game.continue_game).to eql("loaded")
-    end
-  end
 
   describe "#play" do
     it "plays the game" do
@@ -141,29 +103,6 @@ describe Hangman::Game do
       allow(game).to receive(:play_new).and_return("played")
       expect(game.start).to eql("played")
     end
-
-    it "loads game" do
-      allow(game).to receive(:gets).and_return("l")
-      allow(game).to receive(:continue_game).and_return("continued")
-      expect(game.start).to eql("continued")
-    end
-
-    it "loads game" do
-      allow(game).to receive(:gets).and_return("q")
-      expect{game.start}.to raise_error SystemExit
-    end
-
-    it "loads game" do
-      allow(game).to receive(:gets).and_return("b")
-      allow(game).to receive(:invalid).and_return("invalid")
-      expect(game.start).to eql("invalid")
-    end
   end
 
-  describe "#invalid" do
-    it "says invalid input" do
-      allow(game).to receive(:start).and_return("started")
-      expect(game.invalid).to eql("started")
-    end
-  end
 end

@@ -22,18 +22,6 @@ describe FileOp do
     end
   end
 
-  describe "#load_file" do
-    it "should load saved data a setup session" do
-      expect(file_op.load_file('.test', 1)).to eql("helloworld")
-    end
-  end
-
-  describe "#delete_line" do
-    it "deletes a line from saved data" do
-      allow(file_op).to receive(:open).and_return(true)
-      expect(file_op.delete_line(1)).to eql("helloworld")
-    end
-  end
 
   describe "#write_data" do
     it "write data to file" do
