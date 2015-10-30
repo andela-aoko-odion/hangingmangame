@@ -6,7 +6,7 @@ require_relative "engine"
 
 module Hangman
   class Game
-    attr_reader :quit, :status
+    attr_reader :quit, :status, :player
 
     def initialize
       @msg = Message.new
@@ -91,11 +91,28 @@ module Hangman
 
     def save_game
       @fileop.write_data(@fileop.delete_line(@game_id)) if @game_id
-      @player = @fileop.get_player_name
-      data = { word: @word, lives: @lives, scrambled_word: @scrambled_word, word_index: @word_index, player: @player }.to_json
+      player = @fileop.get_player_name
+      data = { word: @word, lives: @lives, scrambled_word: @scrambled_word, word_index: @word_index, player: player }.to_json
       @fileop.save_file('data.json', data)
       puts @msg.save_game_successful
       exit
+    end
+
+    def play(char, word_index, scrambled_word)
+      unless actions_allowed.include? char
+        check_input(word_index, scrambled_word, char)
+        puts scrambled_word
+      else
+        send actions_allowed[char]
+      end
+    end
+
+    def play_new(word, lives, word_index, scrambled_word, player_name=nil)
+      puts @msg.guess_word(scrambled_word)
+      until analyze_game_input(word_index)
+        char = gets.chomp
+        play(char, word_index, scrambled_word)
+      end
     end
 
     def show_saved_sessions
@@ -127,7 +144,7 @@ module Hangman
 
     def continue_game
       @game_id = continue_start
-      if @ids.include? @game_id
+      if  show_saved_sessions.include? @game_id
         load_game_data
       else
         puts @msg.invalid_game_id
@@ -137,23 +154,6 @@ module Hangman
     end
 
 #continue end
-    def play(char, word_index, scrambled_word)
-      unless actions_allowed.include? char
-        check_input(word_index, scrambled_word, char)
-        puts scrambled_word
-      else
-        send actions_allowed[char]
-      end
-    end
-
-    def play_new(word, lives, word_index, scrambled_word, player_name=nil)
-      puts @msg.guess_word(scrambled_word)
-      until analyze_game_input(word_index)
-        char = gets.chomp
-        play(char, word_index, scrambled_word)
-      end
-    end
-
 
 # start start
 def start_options

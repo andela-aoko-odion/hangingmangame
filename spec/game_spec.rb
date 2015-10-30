@@ -1,9 +1,11 @@
+
 require 'spec_helper'
 describe Hangman::Game do
   let(:game) {Hangman::Game.new}
   before :each do
     allow_message_expectations_on_nil
     allow(game).to receive(:puts).and_return nil
+    allow(game).to receive(:gets).and_return nil
 
   end
 
@@ -50,12 +52,7 @@ describe Hangman::Game do
       expect(game.actions_allowed).to eql({'#' => :quit_game,'*' => :save_game})
     end
   end
-  describe "#actions_allowed" do
-    # it "quits the game" do
-    #   allow(game.quit_game).to receive(:quit)
-    # expect{game.quit_game}.to raise_error SystemExit
-    # end
-  end
+
   describe "#analyze_game_input" do
     it "analyzes winner and starts" do
       allow(game).to receive(:winner).and_return(true)
@@ -68,16 +65,13 @@ describe Hangman::Game do
       allow(game).to receive(:start).and_return("started")
       expect(game.analyze_game_input(word)).to eql("started")
     end
-    # it "analyzes the game input" do
-    # allow(game).to receive(:status).and_return(:quit)
-    # expect{game.analyze_game_input({"h"=>[0], "e"=>[1], "l"=>[2, 3], "o"=>[4]})}.to raise_error SystemExit
-    # end
+
   end
   describe "#save_game" do
     it "saves the game" do
       allow(game).to receive(:write_data).and_return("written")
       allow(game).to receive(:save_file).and_return("saved")
-      allow(game).to receive(:gets).and_return("name")
+      allow(game.get_player_name).to receive(:gets).and_return("name")
       expect{game.save_game}.to raise_error SystemExit
     end
   end
@@ -93,23 +87,24 @@ describe Hangman::Game do
   describe "#continue_game" do
     it "continues the game" do
       allow(game).to receive(:show_saved_sessions).and_return([0])
-      allow(game).to receive(:gets).and_return("0")
+      allow(game.get_player_name).to receive(:gets).and_return("0")
       allow(game).to receive(:play_new).and_return("playing")
       expect(game.continue_game).to eql("playing")
     end
 
     it "quit to start again" do
       allow(game).to receive(:show_saved_sessions).and_return([])
-      allow(game).to receive(:gets).and_return("q")
+      allow(game.get_player_name).to receive(:gets).and_return("q")
       allow(game).to receive(:start).and_return("started again")
       expect(game.continue_game).to eql("started again")
     end
 
     it "quit to start again" do
       allow(game).to receive(:show_saved_sessions).and_return([])
-      allow(game).to receive(:gets).and_return("b")
-      allow(game).to receive(:continue_game).and_return("continued")
-      expect(game.continue_game).to eql("continued")
+      allow(game.get_player_name).to receive(:gets).and_return("b")
+      allow(game).to receive(:load_game_data).and_return("loaded")
+      allow(game).to receive(:continue_start).and_return(0)
+      expect(game.continue_game).to eql("loaded")
     end
   end
 
