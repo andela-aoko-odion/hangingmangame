@@ -1,40 +1,26 @@
-# Hangman
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/hangman`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-This is a simple Hangman game written in ruby
 
 # Hangman
 [![Coverage Status](https://coveralls.io/repos/andela-aoko-odion/hangman/badge.svg?branch=master&service=github)](https://coveralls.io/github/andela-aoko-odion/hangman?branch=master)
 
 This is a simulation of the classic Hangman Game in Ruby.
+
 ## Background
-
 When a player initiates the game
-The player is asked if he wants to start
-a new game or he wants to play from a
-previously saved game.
-
-
+The player is asked if he wants to start a new game or he wants to play from a previously saved game.
 ## example:
-	 How would you like to start?
-	 (n) to play a new game,
-	 (l) to continue a saved game
+	 [n] start new game [l] load saved game [q] quit game
 
-
-If new game is selected, the computer selects a word
+If [n] new game is selected, the computer selects a word
 and scrambles the word by replace the hidden selected word with the underscore characters  '______'
 
 ## example:
-	 How would you like to start?
-	 (n) to play a new game,
-	 (l) to continue a saved game
+	 [n] start new game [l] load saved game [q] quit game
 
 	 After 5 wrong guesses you have lost the game.
  	 Guess word : _____
 
 For every turn the player is expected to guess a letter
 from the computer guessed word.
-
 Each Incorrect guess will reduce the players entitled chance by 1
 
 when the player finally guess a letter on the scrambled word correctly
