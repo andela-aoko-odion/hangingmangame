@@ -1,6 +1,7 @@
 
 # Hangman
 [![Coverage Status](https://coveralls.io/repos/andela-aoko-odion/hangman/badge.svg?branch=master&service=github)](https://coveralls.io/github/andela-aoko-odion/hangman?branch=master)
+[![CircleCI](https://circleci.com/gh/andrew-oko-odion/hangman/tree/master.svg?style=svg)](https://circleci.com/gh/andrew-oko-odion/hangman/tree/master)
 This is a simulation of the classic Hangman Game in Ruby.
 
 ## Background
